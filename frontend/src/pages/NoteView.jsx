@@ -126,7 +126,6 @@ const NoteView = () => {
             </div>
           </div>
 
-          {/* Audio Player */}
           {currentNote.audioFile?.url && (
             <div className="mb-8 p-6 bg-gray-50 rounded-xl">
               <div className="flex items-center mb-3">
@@ -139,7 +138,6 @@ const NoteView = () => {
               </audio>
             </div>
           )}
-          {/* Transcription */}
           <div className="mb-8">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Transcription</h3>
             <div className="p-6 bg-gray-50 rounded-xl">
@@ -148,7 +146,7 @@ const NoteView = () => {
               </p>
             </div>
           </div>
-          {/* AI Generated Summary */}
+
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-gray-900">AI Summary</h3>
@@ -178,8 +176,6 @@ const NoteView = () => {
               </div>
             )}
           </div>
-
-          {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
             <ActionButton
               onClick={handleEdit}
@@ -190,7 +186,6 @@ const NoteView = () => {
             >
               Edit Note
             </ActionButton>
-            
             <ActionButton
               onClick={handleDelete}
               variant="danger"

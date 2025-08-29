@@ -25,7 +25,6 @@ const AddNote = () => {
   const timerRef = useRef(null);
   const chunksRef = useRef([]);
 
-  // Start recording
   const startRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -44,14 +43,12 @@ const AddNote = () => {
         setAudioUrl(URL.createObjectURL(blob));
         setShowTranscribe(true);
         
-        // Stop all tracks
         stream.getTracks().forEach(track => track.stop());
       };
 
       mediaRecorderRef.current.start();
       setIsRecording(true);
       setRecordingTime(0);
-      
       // Start timer
       timerRef.current = setInterval(() => {
         setRecordingTime(prev => prev + 1);
@@ -111,7 +108,6 @@ const AddNote = () => {
     }
   };
 
-  // Save note
   const saveNote = async () => {
     if (!title.trim() || !transcription.trim()) {
       toast.error('Please provide both title and transcription');
@@ -131,7 +127,6 @@ const AddNote = () => {
     }
   };
 
-  // Format time
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -184,7 +179,6 @@ const AddNote = () => {
                   </div>
                 </div>
               )}
-
               {audioBlob && showTranscribe && (
                 <div>
                   <div className="flex justify-center items-center space-x-4 mb-6">
@@ -227,8 +221,6 @@ const AddNote = () => {
               )}
             </div>
           )}
-
-          {/* Transcription Form */}
           {transcriptionData && (
             <div className="space-y-6">
               <div className="text-center mb-6">
@@ -252,8 +244,6 @@ const AddNote = () => {
                   </audio>
                 </div>
               )}
-
-              {/* Title Input */}
               <div>
                 <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
                   Note Title
@@ -268,7 +258,7 @@ const AddNote = () => {
                 />
               </div>
 
-              {/* Transcription Textarea */}
+              {/* Transcription box */}
               <div>
                 <label htmlFor="transcription" className="block text-sm font-medium text-gray-700 mb-2">
                   Transcription (Editable)
@@ -283,7 +273,6 @@ const AddNote = () => {
                 />
               </div>
 
-              {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-6">
                 <ActionButton
                   onClick={saveNote}
@@ -295,7 +284,6 @@ const AddNote = () => {
                 >
                   Save Note
                 </ActionButton>
-                
                 <ActionButton
                   onClick={() => navigate('/dashboard')}
                   variant="secondary"

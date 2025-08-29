@@ -13,7 +13,7 @@ const NotesList = ({ notes, onDeleteNote, onRefresh }) => {
   return (
     <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 py-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-8 gap-4">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">My Notes</h1>
           <p className="text-gray-600 mt-1">Organize your thoughts and ideas</p>
@@ -23,7 +23,7 @@ const NotesList = ({ notes, onDeleteNote, onRefresh }) => {
           className="flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg w-full sm:w-auto"
         >
           <Plus className="w-5 h-5" />
-          <span>Record Note</span>
+          <span>Record New Note</span>
         </button>
       </div>
 

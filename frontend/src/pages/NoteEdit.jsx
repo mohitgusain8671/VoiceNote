@@ -176,7 +176,6 @@ const NoteEdit = () => {
               </div>
             )}
 
-            {/* Title Input */}
             <div>
               <label
                 htmlFor="title"
@@ -193,8 +192,6 @@ const NoteEdit = () => {
                 placeholder="Enter note title..."
               />
             </div>
-
-            {/* Transcription Textarea */}
             <div>
               <label
                 htmlFor="transcription"
@@ -212,7 +209,7 @@ const NoteEdit = () => {
               />
             </div>
 
-            {/* AI Summary (Read-only) */}
+            {/* AI summary*/}
             {currentNote.summary && (
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">

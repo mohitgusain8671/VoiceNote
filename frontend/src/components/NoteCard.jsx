@@ -49,7 +49,7 @@ const NoteCard = ({ note, onDeleteNote, onRefresh }) => {
 
   return (
     <div className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-lg border border-white/20 p-4 md:p-6 hover:shadow-xl transition-all duration-200 transform hover:scale-[1.02] flex flex-col h-full">
-      {/* Note Header */}
+      {/* Header */}
       <div className="flex justify-between items-start mb-3">
         <h3 className="text-base md:text-lg font-semibold text-gray-900 truncate pr-2 flex-1">
           {note.title}
@@ -87,14 +87,14 @@ const NoteCard = ({ note, onDeleteNote, onRefresh }) => {
         </div>
       )}
 
-      {/* Note Content */}
+      {/* Content */}
       <div className="flex-1 mb-4">
         <p className="text-gray-600 text-sm leading-relaxed line-clamp-4">
           {truncateContent(note.transcription, 4)}
         </p>
       </div>
 
-      {/* Note Footer */}
+      {/* Footer */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 pt-3 border-t border-gray-100 mt-auto">
         <span className="text-xs text-gray-500 order-2 sm:order-1">
           {new Date(note.updatedAt).toLocaleDateString()}
