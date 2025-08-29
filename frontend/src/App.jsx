@@ -6,8 +6,9 @@ import { useAppStore } from "./store";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import Note from "./pages/Note";
-import NewNotes from "./pages/NewNotes";
+import AddNote from "./pages/AddNote";
+import NoteView from "./pages/NoteView";
+import NoteEdit from "./pages/NoteEdit";
 import ForgotPassword from "./pages/ForgotPassword";
 import VerifyOTP from "./pages/VerifyOTP";
 import ResetPassword from "./pages/ResetPassword";
@@ -63,80 +64,119 @@ const App = () => {
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-purple-200/30 to-pink-200/30 rounded-full blur-3xl"></div>
       </div>
 
-      <main className="relative flex items-center justify-center min-h-screen p-6">
-        <div className={`w-full ${userInfo===undefined&&'max-w-md'}`}>
-          <div className="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8">
-            <BrowserRouter>
-              <Routes>
-                <Route
-                  path="/auth/sign-up"
-                  element={
-                    <AuthRoute>
-                      <Register />
-                    </AuthRoute>
-                  }
-                />
-                <Route
-                  path="/auth/sign-in"
-                  element={
-                    <AuthRoute>
-                      <Login />
-                    </AuthRoute>
-                  }
-                />
-                <Route
-                  path="/auth/forgot-password"
-                  element={
-                    <AuthRoute>
-                      <ForgotPassword />
-                    </AuthRoute>
-                  }
-                />
-                <Route
-                  path="/auth/verify-otp"
-                  element={
-                    <AuthRoute>
-                      <VerifyOTP />
-                    </AuthRoute>
-                  }
-                />
-                <Route
-                  path="/auth/reset-password"
-                  element={
-                    <AuthRoute>
-                      <ResetPassword />
-                    </AuthRoute>
-                  }
-                />
-                <Route
-                  path="/"
-                  element={
-                    <PrivateRoute>
-                      <Dashboard />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/notes/:id"
-                  element={
-                    <PrivateRoute>
-                      <Note />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/notes/new"
-                  element={
-                    <PrivateRoute>
-                      <NewNotes />
-                    </PrivateRoute>
-                  }
-                />
-                <Route path="*" element={<Navigate to="/auth/sign-in" />} />
-              </Routes>
-            </BrowserRouter>
+      <main className="relative min-h-screen">
+        {userInfo ? (
+          // Authenticated layout - full screen
+          <BrowserRouter>
+            <Routes>
+              <Route
+                path="/auth/sign-up"
+                element={
+                  <AuthRoute>
+                    <Register />
+                  </AuthRoute>
+                }
+              />
+              <Route
+                path="/auth/sign-in"
+                element={
+                  <AuthRoute>
+                    <Login />
+                  </AuthRoute>
+                }
+              />
+              <Route
+                path="/auth/forgot-password"
+                element={
+                  <AuthRoute>
+                    <ForgotPassword />
+                  </AuthRoute>
+                }
+              />
+              <Route
+                path="/auth/verify-otp"
+                element={
+                  <AuthRoute>
+                    <VerifyOTP />
+                  </AuthRoute>
+                }
+              />
+              <Route
+                path="/auth/reset-password"
+                element={
+                  <AuthRoute>
+                    <ResetPassword />
+                  </AuthRoute>
+                }
+              />
+              <Route
+                path="/"
+                element={
+                  <PrivateRoute>
+                    <Dashboard />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard"
+                element={
+                  <PrivateRoute>
+                    <Dashboard />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/add-note"
+                element={
+                  <PrivateRoute>
+                    <AddNote />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/notes/:id"
+                element={
+                  <PrivateRoute>
+                    <NoteView />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/notes/:id/edit"
+                element={
+                  <PrivateRoute>
+                    <NoteEdit />
+                  </PrivateRoute>
+                }
+              />
+              <Route path="*" element={<Navigate to="/dashboard" />} />
+            </Routes>
+          </BrowserRouter>
+        ) : (
+          // Unauthenticated layout - centered card
+          <div className="flex items-center justify-center min-h-screen p-6">
+            <div className="w-full max-w-md">
+              <div className="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8">
+                <BrowserRouter>
+                  <Routes>
+                    <Route path="/auth/sign-up" element={<Register />} />
+                    <Route path="/auth/sign-in" element={<Login />} />
+                    <Route
+                      path="/auth/forgot-password"
+                      element={<ForgotPassword />}
+                    />
+                    <Route path="/auth/verify-otp" element={<VerifyOTP />} />
+                    <Route
+                      path="/auth/reset-password"
+                      element={<ResetPassword />}
+                    />
+                    <Route path="*" element={<Navigate to="/auth/sign-in" />} />
+                  </Routes>
+                </BrowserRouter>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </main>
     </div>
   );

@@ -1,2 +1,5 @@
 .env
 node_modules
+# Audio uploads
+uploads/audio/*
+!uploads/audio/.gitkeep

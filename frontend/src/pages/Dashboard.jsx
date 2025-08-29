@@ -1,48 +1,100 @@
-import React, { useState } from "react";
-import Navbar from "../components/Navbar";
-import NotesList from "../components/NotesList";
+import React, { useEffect } from 'react';
+import NotesList from '../components/NotesList';
+import Navbar from '../components/Navbar';
+import StatsGrid from '../components/StatsGrid';
+import LoadingSpinner from '../components/LoadingSpinner';
+import ErrorMessage from '../components/ErrorMessage';
+import ActionButton from '../components/ActionButton';
+import { useAppStore } from '../store';
 
 const Dashboard = () => {
-  // Mock notes data - replace with actual API call later
-  const [notes] = useState([
-    {
-      id: 1,
-      title: "Meeting Notes",
-      content:
-        "Discussed project timeline and deliverables. Need to follow up with team members about their progress. The client wants to see a demo by next Friday.",
-      createdAt: "2024-01-15",
-      updatedAt: "2024-01-15",
-    },
-    {
-      id: 2,
-      title: "Shopping List",
-      content:
-        "Milk, Bread, Eggs, Butter, Cheese, Apples, Bananas, Chicken, Rice, Pasta",
-      createdAt: "2024-01-14",
-      updatedAt: "2024-01-14",
-    },
-    {
-      id: 3,
-      title: "Book Ideas",
-      content:
-        "1. A story about time travel and its consequences 2. Romance novel set in Victorian era 3. Sci-fi thriller about AI consciousness",
-      createdAt: "2024-01-13",
-      updatedAt: "2024-01-13",
-    },
-    {
-      id: 4,
-      title: "Workout Plan",
-      content:
-        "Monday: Chest and Triceps, Tuesday: Back and Biceps, Wednesday: Legs, Thursday: Shoulders, Friday: Cardio and Abs",
-      createdAt: "2024-01-12",
-      updatedAt: "2024-01-12",
-    },
-  ]);
+  const { 
+    userInfo, 
+    notes, 
+    stats, 
+    loading, 
+    error,
+    fetchDashboardData,
+    deleteNote 
+  } = useAppStore();
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, [fetchDashboardData]);
+
+  const handleDeleteNote = async (noteId) => {
+    try {
+      await deleteNote(noteId);
+    } catch (err) {
+      console.error('Error deleting note:', err);
+    }
+  };
+
+  if (loading.notes || loading.stats) {
+    return (
+      <div className="min-h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+        <Navbar />
+        <LoadingSpinner 
+          size="lg" 
+          text="Loading your dashboard..." 
+          className="mt-20"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-purple-50">
       <Navbar />
-      <NotesList notes={notes} />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900">
+            Welcome back, {userInfo?.name || 'User'}!
+          </h1>
+          <p className="mt-2 text-gray-600">
+            Manage your voice notes and transcriptions
+          </p>
+        </div>
+
+        {/* Stats Grid */}
+        <StatsGrid 
+          stats={stats} 
+          loading={loading.stats} 
+        />
+
+        {/* Quick Actions */}
+        <div className="mb-8">
+          <ActionButton
+            to="/add-note"
+            variant="primary"
+            size="md"
+            icon={({ className }) => (
+              <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+              </svg>
+            )}
+          >
+            Record New Note
+          </ActionButton>
+        </div>
+
+        {/* Notes List */}
+        {error ? (
+          <ErrorMessage 
+            message={error} 
+            onRetry={fetchDashboardData}
+            className="mb-8"
+          />
+        ) : (
+          <NotesList 
+            notes={notes} 
+            onDeleteNote={handleDeleteNote}
+            onRefresh={fetchDashboardData}
+          />
+        )}
+      </div>
     </div>
   );
 };

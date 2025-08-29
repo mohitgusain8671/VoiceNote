@@ -9,5 +9,6 @@ export const {
     ORIGIN, 
     SERVER_URL,
     EMAIL_USER,
-    EMAIL_PASS 
+    EMAIL_PASS,
+    GEMINI_API_KEY 
 } = process.env;

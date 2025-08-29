@@ -11,3 +11,15 @@ export const AUTH_ROUTES = {
   RESET_PASSWORD: "/api/auth/reset-password",
   USER_INFO: "/api/auth/user-info",
 };
+
+// Notes API Routes
+export const NOTES_ROUTES = {
+  GET_ALL_NOTES: "/api/notes",
+  GET_NOTES_STATS: "/api/notes/stats",
+  GET_NOTE_BY_ID: (id) => `/api/notes/${id}`,
+  CREATE_NOTE: "/api/notes",
+  UPDATE_NOTE: (id) => `/api/notes/${id}`,
+  DELETE_NOTE: (id) => `/api/notes/${id}`,
+  TRANSCRIBE_AUDIO: "/api/notes/transcribe",
+  GENERATE_SUMMARY: (id) => `/api/notes/${id}/summary`,
+};
