@@ -1,4 +1,4 @@
-import Note from "../models/Note.model.js";
+import Note from "../models/note.model.js";
 import geminiService from "../services/geminiService.js";
 import fileManager from "../utils/fileManager.js";
 import { SERVER_URL } from "../config/env.js";
