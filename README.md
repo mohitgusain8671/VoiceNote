@@ -8,7 +8,10 @@
   </div>
 
   <h3 align="center">VoiceNote Manager</h3>
-
+  <a href="https://voice-note-virid.vercel.app/" >🚀 Visit the Live Website</a>
+  <p>Live URL: <span style='color:blue'>https://voice-note-virid.vercel.app/</span>
+  
+  <p><strong>Note:</strong> Backend is deployed on Render's free tier - it may take a moment to start up on first visit.</p>
 </div>
 
 ## 📋 Table of Contents
@@ -27,8 +30,8 @@ It is an VoiceNote Manager Web APP in which user can record voice note and trans
 
 If you have any questions or suggestions, please feel free to contact me.
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=flat-square)](https://www.linkedin.com/in/mohit-gusain-9b687a257/) 
-[![Email](https://img.shields.io/badge/Email-Send%20Mail-red?logo=gmail&style=flat-square)](mailto:mohitgusain8671@gmail.com) 
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=flat-square)](https://www.linkedin.com/in/mohit-gusain-9b687a257/)
+[![Email](https://img.shields.io/badge/Email-Send%20Mail-red?logo=gmail&style=flat-square)](mailto:mohitgusain8671@gmail.com)
 
 ## 🤸 Quick Start
 
@@ -50,29 +53,30 @@ Make sure you have the following installed on your machine:
 git clone https://github.com/mohitgusain8671/VoiceNote.git
 cd VoiceNote
 ```
+
 **Running Frontend**
 
 - **Installation**
 
-    Install the project dependencies using npm:
+  Install the project dependencies using npm:
 
-    ```bash
-    npm install
-    ```
+  ```bash
+  npm install
+  ```
 
 - **Configuration**
 
-    Create a `.env` file in the root directory and add the following environment variables:
+  Create a `.env` file in the root directory and add the following environment variables:
 
-    ```bash
-    VITE_SERVER_URL= 'server/backend-url'
-    ```
+  ```bash
+  VITE_SERVER_URL= 'server/backend-url'
+  ```
 
 - **Running the Project**
 
-    ```bash
-    npm run dev
-    ```
+  ```bash
+  npm run dev
+  ```
 
 Open [http://localhost:5173](http://localhost:5173) in your browser to view the project.
 
@@ -80,37 +84,39 @@ Open [http://localhost:5173](http://localhost:5173) in your browser to view the 
 
 - **Installation**
 
-    Install the project dependencies using npm:
+  Install the project dependencies using npm:
 
-    ```bash
-    npm install
-    ```
+  ```bash
+  npm install
+  ```
 
 - **Configuration**
 
-    Create a `.env` file in the root directory and add the following environment variables:
+  Create a `.env` file in the root directory and add the following environment variables:
 
-    ```bash
-    PORT= 'port-number' 
-    NODE_ENV='devlopment'
-    DB_URI= 'mongodb+srv://username:password@cluster0.8qjz0.mongodb.net/?retryWrites=true&w=majority'
-    JWT_SECRET= 'jwt-secret'
-    GEMINI_API_KEY= 'gemini-api-key'
-    SERVER_URL='server-url'
-    ORIGIN='frontend-base-url'
-    EMAIL_USER='your-email'
-    EMAIL_PASS='app-password'
-    ```
+  ```bash
+  PORT= 'port-number'
+  NODE_ENV='devlopment'
+  DB_URI= 'mongodb+srv://username:password@cluster0.8qjz0.mongodb.net/?retryWrites=true&w=majority'
+  JWT_SECRET= 'jwt-secret'
+  GEMINI_API_KEY= 'gemini-api-key'
+  SERVER_URL='server-url'
+  ORIGIN='frontend-base-url'
+  EMAIL_USER='your-email'
+  EMAIL_PASS='app-password'
+  ```
 
 - **Start the Server**
 
-    ```bash
-    npm run dev
-    ```
-    or 
-    ```bash
-    node index.js
-    ```
+  ```bash
+  npm run dev
+  ```
+
+  or
+
+  ```bash
+  node index.js
+  ```
 
 Server will starts at the mentioned PORT Number
 
@@ -118,7 +124,7 @@ Server will starts at the mentioned PORT Number
 
 - [▶ Watch the video](https://drive.google.com/file/d/14dS7DdiPpFc86BTu3zMC6lfwtZQTHYRh/view?usp=sharing)
 - or copy the below URL
-    `https://drive.google.com/file/d/14dS7DdiPpFc86BTu3zMC6lfwtZQTHYRh/view?usp=sharing`
+  `https://drive.google.com/file/d/14dS7DdiPpFc86BTu3zMC6lfwtZQTHYRh/view?usp=sharing`
 
 ## ⚙️ Tech Stack
 
