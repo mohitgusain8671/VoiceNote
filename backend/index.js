@@ -16,9 +16,21 @@ const app = express();
 
 app.use(
   cors({
-    origin: ORIGIN,
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      
+      const allowedOrigins = ORIGIN ? ORIGIN.split(',') : ['http://localhost:5173'];
+      
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
+    optionsSuccessStatus: 200
   })
 );
 app.use(cookieParser());

@@ -158,8 +158,9 @@ export const login = async (req, res, next) => {
         res.cookie('token', jwtToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
-            maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+            domain: process.env.NODE_ENV === 'production' ? undefined : undefined
         });
 
         res.status(200).json({
@@ -298,7 +299,12 @@ export const resetPassword = async (req, res, next) => {
 // Logout Controller
 export const logout = async (req, res, next) => {
     try {
-        res.clearCookie('token');
+        res.clearCookie('token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+            domain: process.env.NODE_ENV === 'production' ? undefined : undefined
+        });
         res.status(200).json({
             success: true,
             message: 'Logged out successfully'
